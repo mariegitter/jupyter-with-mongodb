@@ -1,0 +1,25 @@
+version: '3'
+services:
+  jupyter:
+      image: jupyter/datascience-notebook
+      volumes:
+        - .:/work
+      ports:
+        - 8888:8888
+  
+  mongodb:
+    image: mongo:4.2.3-bionic
+    ports:
+      - 27017:27017
+    env_file:
+      - ./.env
+    
+  mongodbsetup:
+    image: mongo:4.2.3-bionic
+    depends_on:
+      - mongodb
+    volumes:
+      - ./src:/root/src
+      - ./data:/root/src/data
+    restart: "no"
+    command: /bin/sh src/load_mongo_data.sh 
