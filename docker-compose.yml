@@ -1,25 +1,30 @@
 version: '3'
 services:
   jupyter:
-      image: jupyter/datascience-notebook
+      build: .
+      depends_on:
+      - mongodb
       volumes:
-        - .:/work
+        - .:/usr/src/workspace
       ports:
-        - 8888:8888
+      - 8888:8888
+      command: jupyter notebook --allow-root --ip 0.0.0.0 
   
   mongodb:
     image: mongo:4.2.3-bionic
     ports:
       - 27017:27017
-    env_file:
-      - ./.env
+    environment:
+      - MONGO_INITDB_DATABASE=test
+      - MONGO_INITDB_ROOT_USERNAME=my-user
+      - MONGO_INITDB_ROOT_PASSWORD=my-password
     
   mongodbsetup:
     image: mongo:4.2.3-bionic
     depends_on:
       - mongodb
     volumes:
-      - ./src:/root/src
-      - ./data:/root/src/data
+      - .:/root
     restart: "no"
-    command: /bin/sh src/load_mongo_data.sh 
+    working_dir: /root/src
+    command: sh load_mongo_data.sh 

@@ -9,7 +9,7 @@ do
     echo "Processing $f file..."
     DATABASE=$(echo $basepath | grep -o -P '.*?(?=\__)') # get database name as everything before __
     COLLECTION=$(echo $basepath | grep -o -P '(?<=__).*(?=.json)') # get collection name as everything between __ and .json
-    mongoimport --host mongodb --file $f -d $DATABASE -c $COLLECTION -u $DB_USER -p $DB_PW --authenticationDatabase admin --jsonArray
+    mongoimport --host mongodb --file $f -d $DATABASE -c $COLLECTION -u $DB_USER -p $DB_PW --authenticationDatabase admin
 done
 
 ## to clean up folder: rm -rf $DATA_FOLDER 
