@@ -16,8 +16,8 @@ services:
       - 27017:27017
     environment:
       - MONGO_INITDB_DATABASE=test
-      - MONGO_INITDB_ROOT_USERNAME=my-user
-      - MONGO_INITDB_ROOT_PASSWORD=my-password
+      - MONGO_INITDB_ROOT_USERNAME=my-user # Insert your database user name
+      - MONGO_INITDB_ROOT_PASSWORD=my-password # Insert your database password
     
   mongodbsetup:
     image: mongo:4.2.3-bionic

@@ -11,7 +11,7 @@ This project is an example of how to use docker-compose for spinning up a develo
     2. mongodbsetup: The service that populates the MongoDB
     3. jupyter: The service that spins up a jupyter notebook which can be used for development
 - [notebooks/pymongo_examples.ipynb](./notebooks/pymongo_examples.ipynb) is a jupyter notebook with examples on how you can use pymongo to ready and work with the data from your MongoDB
-- [data](./data) contains sample data for the MongoDB
+- [data](./data) contains some sample data for the MongoDB
 - [src/load_mongo_data.sh](./src/load_mongo_data.sh) is the bash script for importing data from [data/](./data) into the MongoDB
 - [.env](./.env) is the place to specify your environment variables for the docker containers
 
